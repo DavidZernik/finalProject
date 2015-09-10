@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Web Audio practice</title>
+    <link rel="stylesheet" type="text/css" href="./stylesheets/style.css" />
+    <!-- remember to put script at the top of the page -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- for websockets -->
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <section id="sp">
+    <div id="pad1" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409274kick.wav">Sound 1</div>
+    <div id="pad2" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409275snare.wav">Sound 2</div>
+    <div id="pad3" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409276tin.wav">Sound 3</div>
+    <div id="pad4" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409278hat.wav">Sound 4</div>
+    </section>
+    <script>
+    // for websocket
+    var socket = io();
+    var numberClicks = 0;
+    var clickArray=[];
+    var context = new AudioContext();
+    // 2 paratmeters, one is pad object, the second is url of the sound
+    function loadAudio( object, url) {
+      var request = new XMLHttpRequest();
+      // true tells us we want asynchronous request
+      request.open('GET', url, true);
+      request.responseType = 'arraybuffer';
+      request.onload = function() {
+        // Provide some means of accessing the decoded source.
+        context.decodeAudioData(request.response, function(buffer) {
+            object.buffer = buffer;
+        });
+      };
+      request.send();
+    }
+    // play a file when audio is clicked
+    function addAudioProperties(object) {
+      object.name = object.id;
+      object.source = $(object).data('sound');
+      loadAudio(object, object.source);
+      object.play = function () {
+          var s = context.createBufferSource();
+          s.buffer = object.buffer;
+          s.connect(context.destination);
+          s.start(0);
+          object.s = s;
+        };
+    }
+
+    $(
+      function() {
+      $('#pad1').click(function(){
+          $("#pad1").html('inner html changed');
+          numberClicks++;
+          console.log("numberClicks is " + numberClicks);
+          clickArray.push("1");
+          console.log(clickArray);
+          if (numberClicks.length == 4){
+            // begin ajax call................
+            $.ajax({
+              url: '/audioClips',
+              method: 'post',
+              data: clickArray,
+              success: function(response){
+                // if(response.results){
+                //   console.log(response.results + ' your song has been added');
+                // }else{
+                //   console.log(response.results + ' your song has been removed');
+                // }
+                console.log(response)
+              }
+            })
+            numberClicks=0;
+            clickArray=[];
+          }
+        });
+      }
+    );
+    $(
+      function() {
+      $('#pad2').click(function(){
+          $("#pad2").html('inner html changed');
+          numberClicks++;
+          console.log("numberClicks is " + numberClicks);
+          clickArray.push("2");
+          console.log(clickArray);
+          if (numberClicks.length==4){
+            // begin ajax call................
+            $.ajax({
+              url: '/audioClips',
+              method: 'post',
+              data: clickArray,
+              success: function(response){
+                // if(response.results){
+                //   console.log(response.results + ' your song has been added');
+                // }else{
+                //   console.log(response.results + ' your song has been removed');
+                // }
+                console.log(response)
+              }
+            })
+            numberClicks=0;
+            clickArray=[];
+          }
+        });
+      }
+    );
+    $(
+      function() {
+      $('#pad3').click(function(){
+          $("#pad3").html('inner html changed');
+          numberClicks++;
+          console.log("numberClicks is " + numberClicks);
+          clickArray.push("3");
+          console.log(clickArray);
+          if (numberClicks.length==4){
+            // begin ajax call................
+            $.ajax({
+              url: '/audioClips',
+              method: 'post',
+              data: clickArray,
+              success: function(response){
+                // if(response.results){
+                //   console.log(response.results + ' your song has been added');
+                // }else{
+                //   console.log(response.results + ' your song has been removed');
+                // }
+                console.log(response)
+              }
+            })
+            numberClicks=0;
+            clickArray=[];
+          }
+        });
+      }
+    );
+    $(
+      function() {
+      $('#pad4').click(function(){
+          $("#pad4").html('inner html changed');
+          numberClicks++;
+          console.log("numberClicks is " + numberClicks);
+          clickArray.push("4");
+          console.log(clickArray);
+          if (numberClicks.length==4){
+            // begin ajax call................
+            $.ajax({
+              url: '/audioClips',
+              method: 'post',
+              data: clickArray,
+              success: function(response){
+                // if(response.results){
+                //   console.log(response.results + ' your song has been added');
+                // }else{
+                //   console.log(response.results + ' your song has been removed');
+                // }
+                console.log(response)
+              }
+            })
+            numberClicks=0;
+            clickArray=[];
+          }
+        });
+      }
+    );
+    </script>
+  </body>
+</html>
