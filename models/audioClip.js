@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 var AudioClipSchema = mongoose.Schema({
+
   // any text anyone might want to their clip
   text: String,
   // an array of the 4 sounds in the clip

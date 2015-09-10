@@ -8,6 +8,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- for websockets -->
     <script src="/socket.io/socket.io.js"></script>
+    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
   </head>
   <body>
     <section id="sp">
@@ -16,13 +17,15 @@
     <div id="pad3" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409276tin.wav">Sound 3</div>
     <div id="pad4" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409278hat.wav">Sound 4</div>
     </section>
+    <!-- script ================================================================== -->
     <script>
     // for websocket
     var socket = io();
     var numberClicks = 0;
     var clickArray=[];
+    // set up web audio API===============
     var context = new AudioContext();
-    // 2 paratmeters, one is pad object, the second is url of the sound
+    // 2 parameters, one is pad object, the second is url of the sound
     function loadAudio( object, url) {
       var request = new XMLHttpRequest();
       // true tells us we want asynchronous request
@@ -38,6 +41,7 @@
     }
     // play a file when audio is clicked
     function addAudioProperties(object) {
+      console.log("testing1234");
       object.name = object.id;
       object.source = $(object).data('sound');
       loadAudio(object, object.source);
@@ -49,7 +53,6 @@
           object.s = s;
         };
     }
-
     $(
       function() {
       $('#pad1').click(function(){
