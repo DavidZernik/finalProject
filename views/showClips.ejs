@@ -3,19 +3,41 @@
   <head>
     <meta charset="utf-8">
     <title>Show Clips</title>
+    <link rel="stylesheet" type="text/css" href="./stylesheets/style.css" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   </head>
   <body>
-
       <% results.forEach(function(bananas) {
-        %><li><button class= "btn btn-primary btn-lg"><%= bananas.audioClip %></button>
+        %><li><button id="sound" class= "btn btn-primary btn-lg"><%= bananas.audioClip %></button>
           <button class="btn btn-primary btn-sm">delete</button>
+          <form method="post" action="/audioclips/<%= bananas._id%>/delete">
+            <input type="submit" value="delete">
+          </form>
         </li>
       <%}); %>
+      <!-- sound files -->
+      <div style="display: none" id="pad1" class="btn btn-primary btn-sm" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409274kick.wav">Sound 1</div>
+      <div style="display: none" id="pad2" class="btn btn-primary btn-sm" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409275snare.wav">Sound 2</div>
+      <div style="display: none" id="pad3" class="btn btn-primary btn-sm" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409276tin.wav">Sound 3</div>
+      <div style="display: none" id="pad4" class="btn btn-primary btn-sm" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409278hat.wav">Sound 4</div>
 
 
+<script>
+console.log("sdfdsfdsfsd");
+// jquery function that will play an individual sound clip
+$(function() {
+  console.log("logginggg");
+  $('#sound').click(function() {
+    console.log("hello worlddddd");
+    var soundArray = [];
+    soundArray = $("#sound").html();
+    console.log("soundArray is " + soundArray);
 
+  });
+});
 
+</script>
 
   </body>
 </html>

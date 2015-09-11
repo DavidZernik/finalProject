@@ -34,14 +34,15 @@ audioClipsRouter.post('/', function (request,response) {
 });
 
 // delete individual audioclip
-audioClipsRouter.delete('/:id', function(request, response){
+audioClipsRouter.post('/:id/delete', function(request, response){
   AudioClip.findOneAndRemove({_id: request.params.id}, function(err, audioClip){
     if(err) {
       console.log(err);
       return
     } else {
       console.log(audioClip);
-      response.json({'message': 'deleted audioclip'+ request.params.id});
+      // response.json({'message': 'deleted audioclip'+ request.params.id});
+      response.redirect('/audioclips');
     }
   });
 });
