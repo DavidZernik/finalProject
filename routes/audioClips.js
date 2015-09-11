@@ -6,7 +6,7 @@ var AudioClip = require('../models/audioClip');
 //show all usersRouter route and function
 audioClipsRouter.get('/',function(request,response){
   AudioClip.find({}, function(err,audioClips){
-    console.log("audioClips is "+ audioClips);
+    console.log("audioClips is "+ audioClips[0]);
     if(err) return console.log(err);
     // *****this line of code is taking the data from the audioClip model and posting it to the showClips.ejs view******
     response.render('showClips.ejs', { results: audioClips });

@@ -5,7 +5,12 @@
     <title></title>
   </head>
   <body>
-    <p><%= results %></p>
+    <ul>
+      <% results.forEach(function(bananas) {
+        %><li><%= bananas.audioClip %></li>
+      <% }); %>
+  </ul>
+
     <h2>Loop</h2>
 
 
