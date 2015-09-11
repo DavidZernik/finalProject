@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Web Audio practice</title>
     <link rel="stylesheet" type="text/css" href="./stylesheets/style.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
     <!-- remember to put script at the top of the page -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- for websockets -->
@@ -11,11 +12,64 @@
     <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
   </head>
   <body>
+    <!-- beginning of bootstrap ====================================================== -->
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Songersation</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+      </ul>
+    </div>
+  </div>
+    </nav>
+    <!-- end of bootstrap navbar ====================================================== -->
+    <div id="playButton" class="btn btn-primary btn-lg">Play</div>
     <section id="sp">
-    <div id="pad1" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409274kick.wav">Sound 1</div>
-    <div id="pad2" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409275snare.wav">Sound 2</div>
-    <div id="pad3" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409276tin.wav">Sound 3</div>
-    <div id="pad4" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409278hat.wav">Sound 4</div>
+      <div id="pad1" class="btn btn-primary btn-sm" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409274kick.wav">Sound 1</div>
+      <div id="pad2" class="btn btn-primary btn-sm" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409275snare.wav">Sound 2</div>
+      <div id="pad3" class="btn btn-primary btn-sm" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409276tin.wav">Sound 3</div>
+      <div id="pad4" class="btn btn-primary btn-sm" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409278hat.wav">Sound 4</div>
+
+      <!-- Enter text message and submit -->
+      <div class="form-group">
+        <label class="control-label" for="focusedInput"></label>
+        <input class="form-control" id="focusedInput" type="text" value="Enter text message...">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+
+
     </section>
     <!-- script -->
     <script>
@@ -76,22 +130,25 @@
           console.log("clickArray is " + clickArray);
           console.log("numberClicks length" + numberClicks);
           if (numberClicks == 4){
-            console.log("hi");
             // begin ajax call................
             $.ajax({
               url: '/audioClips',
               method: 'post',
-              data: {key: clickArray},
+              // data: {"key": clickArray},
+              datatype: "json",
+              data : JSON.stringify(clickArray),
+              contentType: "application/json",
               success: function(response){
-                // if(response.results){
-                //   console.log(response.results + ' your song has been added');
-                // }else{
-                //   console.log(response.results + ' your song has been removed');
-                // }
-                console.log(response)
+                if(response.results){
+                  console.log(response.results + ' your song has been added');
+                }else{
+                  console.log(response.results + ' your song has been removed');
+                }
+                console.log("response is " + response)
               }
             })
-            numberClicks=0;
+            numberClicks = 0;
+            clickArray=[];
           }
         });
       }
@@ -104,22 +161,26 @@
           console.log("numberClicks is " + numberClicks);
           clickArray.push("2");
           console.log("clickArray is " + clickArray);
-          if (numberClicks==4){
+          if (numberClicks == 4){
             // begin ajax call................
             $.ajax({
               url: '/audioClips',
               method: 'post',
-              data: {key: clickArray},
+              // data: {"key": clickArray},
+              datatype: "json",
+              data : JSON.stringify(clickArray),
+              contentType: "application/json",
               success: function(response){
-                // if(response.results){
-                //   console.log(response.results + ' your song has been added');
-                // }else{
-                //   console.log(response.results + ' your song has been removed');
-                // }
-                console.log(response)
+                if(response.results){
+                  console.log(response.results + ' your song has been added');
+                }else{
+                  console.log(response.results + ' your song has been removed');
+                }
+                console.log("response is " + response)
               }
             })
-            numberClicks=0;
+            numberClicks = 0;
+            clickArray=[];
           }
         });
       }
@@ -150,6 +211,8 @@
                 console.log("response is " + response)
               }
             })
+            numberClicks = 0;
+            clickArray=[];
           }
         });
       }
@@ -162,28 +225,35 @@
           console.log("numberClicks is " + numberClicks);
           clickArray.push("4");
           console.log("clickArray is " + clickArray);
-          if (numberClicks==4){
+          if (numberClicks == 4){
             // begin ajax call................
             $.ajax({
               url: '/audioClips',
               method: 'post',
-              data: {key: clickArray},
-              // data: clickArray,
+              // data: {"key": clickArray},
+              datatype: "json",
+              data : JSON.stringify(clickArray),
+              contentType: "application/json",
               success: function(response){
-                // if(response.results){
-                //   console.log(response.results + ' your song has been added');
-                // }else{
-                //   console.log(response.results + ' your song has been removed');
-                // }
-                console.log("response is " + response.results);
+                if(response.results){
+                  console.log(response.results + ' your song has been added');
+                }else{
+                  console.log(response.results + ' your song has been removed');
+                }
+                console.log("response is " + response)
               }
-              // console.log("response is " + response);
             })
-            numberClicks=0;
+            numberClicks = 0;
+            clickArray=[];
           }
         });
       }
     );
+
+
+
+
+
     </script>
   </body>
 </html>

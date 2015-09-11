@@ -35,7 +35,17 @@ app.set('view engine', 'ejs');
 // set the homepage to index.ejs
 app.get('/',function(request,response){
   response.render('index');
+  // response.json(audioClips);
 });
+
+// audioClipsRouter.get('/',function(request,response){
+//   AudioClip.find({}, function(err,audioClips){
+//     if(err) return console.log(err);
+//     response.json(audioClips);
+//   });
+// });
+
+
 // we will put css files in the public folder
 app.use(express.static('public'));
 // =============================

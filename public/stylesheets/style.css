@@ -4,9 +4,10 @@
     margin-bottom: 1em;
     display: inline-block;
     /*background: #fca13f;*/
-    background: red;
+    background: #9DB7C5;
     box-shadow: rgba(0, 0, 0, 0.0980392) -6px 6px 0px 0px inset;
     text-align: center;
+
 }
 
 #sp {
@@ -15,4 +16,26 @@
     margin: 0;
     padding: 2em;
     float: left;
+}
+
+h1 {
+
+  background-color: blue;
+}
+
+body {
+  background: url("/stylesheets/background pic.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.btn-primary {
+    color: black;
+  }
+
+#playButton {
+  /*float: right;*/
+  float right: 500px;
 }

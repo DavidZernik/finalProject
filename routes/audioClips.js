@@ -6,8 +6,12 @@ var AudioClip = require('../models/audioClip');
 //show all usersRouter route and function
 audioClipsRouter.get('/',function(request,response){
   AudioClip.find({}, function(err,audioClips){
+    console.log("audioClips is "+ audioClips);
     if(err) return console.log(err);
-    response.json(audioClips);
+    // *****this line of code is taking the data from the audioClip model and posting it to the showClips.ejs view******
+    response.render('showClips.ejs', { results: audioClips });
+        // response.render('showClips.ejs', {title: 'stratus1234'});
+    // response.json(audioClips);
   });
 });
 
@@ -29,16 +33,6 @@ audioClipsRouter.post('/', function (request,response) {
     });
 });
 
-audioClipsRouter.get('/:id', function(request, response){
-  AudioClip.findOne({_id: request.params.id}, function(err,audioClip){
-    if(err) {
-      console.log(err);
-      return
-    } else {
-      console.log(audioClip);
-      response.json(audioClip);
-    }
-  });
-});
+
 
 module.exports = audioClipsRouter;
