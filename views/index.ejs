@@ -14,7 +14,7 @@
   <body>
     <!-- beginning of bootstrap ====================================================== -->
     <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
+      <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
         <span class="sr-only">Toggle navigation</span>
@@ -27,10 +27,10 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+
+        <!-- <li><a href="#">My profile</a></li> -->
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My profile <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">Action</a></li>
             <li><a href="#">Another action</a></li>
@@ -44,18 +44,18 @@
       </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control" placeholder="Search audioclips...">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
+        <li><a href="#">Sign in</a></li>
       </ul>
     </div>
   </div>
     </nav>
     <!-- end of bootstrap navbar ====================================================== -->
-    <div id="playButton" class="btn btn-primary btn-lg">Play</div>
+    <!-- <div id="playButton" class="btn btn-primary btn-lg">Play</div> -->
     <section id="sp">
       <div id="pad1" class="btn btn-primary btn-sm" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409274kick.wav">Sound 1</div>
       <div id="pad2" class="btn btn-primary btn-sm" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409275snare.wav">Sound 2</div>
@@ -81,11 +81,9 @@
     var context = new AudioContext();
   // 2 parameters, one is pad object, the second is url of the sound
   function loadAudio( object, url) {
-
       var request = new XMLHttpRequest();
       request.open('GET', url, true);
       request.responseType = 'arraybuffer';
-
       request.onload = function() {
           context.decodeAudioData(request.response, function(buffer) {
               object.buffer = buffer;
@@ -93,6 +91,7 @@
       }
       request.send();
   }
+
   function addAudioProperties(object) {
     console.log("inside 1st");
       object.name = object.id;
@@ -112,16 +111,16 @@
           addAudioProperties(this);
           console.log("inside 2nd");
       });
-
       $('#sp div').click(function() {
         console.log("inside 3rd");
           this.play();
       });
   });
-    $(
+
+  $(
       function() {
       $('#pad1').click(function(){
-          $("#pad1").html('inner html changed');
+          // $("#pad1").html('inner html changed');
           numberClicks++;
           console.log("numberClicks is " + numberClicks);
           clickArray.push("1");
@@ -154,7 +153,7 @@
     $(
       function() {
       $('#pad2').click(function(){
-          $("#pad2").html('inner html changed');
+          // $("#pad2").html('inner html changed');
           numberClicks++;
           console.log("numberClicks is " + numberClicks);
           clickArray.push("2");
@@ -186,7 +185,7 @@
     $(
       function() {
       $('#pad3').click(function(){
-          $("#pad3").html('inner html changed');
+          // $("#pad3").html('inner html changed');
           numberClicks++;
           console.log("numberClicks is " + numberClicks);
           clickArray.push("3");
@@ -218,7 +217,7 @@
     $(
       function() {
       $('#pad4').click(function(){
-          $("#pad4").html('inner html changed');
+          // $("#pad4").html('inner html changed');
           numberClicks++;
           console.log("numberClicks is " + numberClicks);
           clickArray.push("4");
