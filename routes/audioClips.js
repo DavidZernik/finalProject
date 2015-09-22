@@ -9,6 +9,7 @@ audioClipsRouter.get('/',function(request,response){
     console.log("audioClips is "+ audioClips);
     if(err) return console.log(err);
     // *****this line of code is taking the data from the audioClip model and posting it to the showClips.ejs view******
+    // audioClips is all the actual clips that I'm taking from the db
     response.render('showClips.ejs', { results: audioClips });
         // response.render('showClips.ejs', {title: 'stratus1234'});
     // response.json(audioClips);

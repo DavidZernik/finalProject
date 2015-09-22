@@ -57,6 +57,22 @@
           </form>
         </li>
       <%}); %>
+
+      <!-- Button that will play everything -->
+      <button type="button" id ="everything" class ="btn btn-primary btn-lg">
+        <% results.forEach(function(bananas) { %>
+        <%}); %>
+        Play everything
+
+
+
+      </button>
+
+
+
+
+
+
       <!-- sound files -->
       <section id="sp">
       <!-- <div  id="pad1" class="btn btn-primary btn-sm" data-sound="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/08/1407409274kick.wav">Sound 1</div>
@@ -131,7 +147,7 @@ function doTimer(string, delay) {
 //   delay += 1000;
 // }
 
-
+// button that plays each individual audioclip
 $(function() {
   $(".sound").click(function(){
     console.log("play111y");
@@ -146,6 +162,34 @@ $(function() {
     }
   });
 });
+
+// let's us use ejs tags inside the javascript
+window.allSongs =  [<% results.forEach(function(bananas) { %><%=bananas.audioClip %>,<%}); %>]
+
+// button that plays everything
+$(function() {
+  $("#everything").click(function(){
+    console.log("play everything");
+    // turns allSongs into a string
+    var x = window.allSongs.toString();
+    console.log("x is " + x);
+    var y = x.split(",");
+    console.log("y = " + y);
+    var delay = 1000;
+    for (var i = 0; i<y.length; i++) {
+      doTimer(($("#drum" + y[i]).trigger('play')), delay);
+      console.log("y[i] is "+ y[i]);
+      delay += 1000;
+    }
+  });
+});
+
+
+
+
+
+
+
 </script>
   </body>
 </html>
