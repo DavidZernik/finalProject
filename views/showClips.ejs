@@ -50,7 +50,7 @@
   </div>
     </nav>
       <% results.forEach(function(bananas) {
-        %><li><button id="sound" class= "btn btn-primary btn-lg"><%= bananas.audioClip %></button>
+        %><li><button class="sound btn btn-primary btn-lg"><%= bananas.audioClip %></button>
 
           <button class="btn btn-primary btn-sm"><form method="post" action="/audioclips/<%= bananas._id%>/delete">
             <input type="submit" value="delete"></button>
@@ -133,9 +133,9 @@ function doTimer(string, delay) {
 
 
 $(function() {
-  $("#sound").click(function(){
+  $(".sound").click(function(){
     console.log("play111y");
-    var x = $("#sound").html();
+    var x = $(this).html();
     var y = x.split(",");
     console.log("y = " + y);
     var delay = 1000;
