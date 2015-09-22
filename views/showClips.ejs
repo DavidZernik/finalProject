@@ -49,23 +49,24 @@
     </div>
   </div>
     </nav>
-      <% results.forEach(function(bananas) {
-        %><li><button class="sound btn btn-primary btn-lg"><%= bananas.audioClip %></button>
 
-          <button class="btn btn-primary btn-sm"><form method="post" action="/audioclips/<%= bananas._id%>/delete">
-            <input type="submit" value="delete"></button>
-          </form>
-        </li>
+      <% results.forEach(function(bananas) {
+        %><div id ="data">
+          <div>
+          <button class="sound btn btn-primary btn-lg"><%= bananas.audioClip %></button>
+          <button class="btn btn-primary btn-sm">
+            <form method="post" action="/audioclips/<%= bananas._id%>/delete"> <input type="submit" value="delete"></button>
+            </form>
+          </div>
+        </div>
       <%}); %>
+
 
       <!-- Button that will play everything -->
       <button type="button" id ="everything" class ="btn btn-primary btn-lg">
         <% results.forEach(function(bananas) { %>
         <%}); %>
         Play everything
-
-
-
       </button>
 
 

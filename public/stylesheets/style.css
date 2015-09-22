@@ -56,3 +56,17 @@ button, input, select, textarea {
     /* color: red; */
     background-color: #337ab7;
 }
+
+/* pseudo selectors for alternating display of buttons, to make it look like a conversation */
+
+div#data {
+  width: 1000px;
+}
+
+div#data:nth-child(odd) {
+  text-align: left;
+}
+
+div#data:nth-child(even) {
+  text-align: right;
+}
