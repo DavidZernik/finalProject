@@ -176,11 +176,11 @@ $(function() {
     console.log("x is " + x);
     var y = x.split(",");
     console.log("y = " + y);
-    var delay = 1000;
+    var delay = 500;
     for (var i = 0; i<y.length; i++) {
       doTimer(($("#drum" + y[i]).trigger('play')), delay);
       console.log("y[i] is "+ y[i]);
-      delay += 1000;
+      delay += 500;
     }
   });
 });
