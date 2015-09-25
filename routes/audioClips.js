@@ -39,7 +39,7 @@ audioClipsRouter.post('/:id/delete', function(request, response){
   AudioClip.findOneAndRemove({_id: request.params.id}, function(err, audioClip){
     if(err) {
       console.log(err);
-      return
+      return;
     } else {
       console.log(audioClip);
       // response.json({'message': 'deleted audioclip'+ request.params.id});

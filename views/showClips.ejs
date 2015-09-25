@@ -49,6 +49,13 @@
     </div>
   </div>
     </nav>
+    <a href="/"><button class="sound btn btn-primary btn-lg" id="addAnother">Add another beat</button></a>
+    <!-- Button that will play everything -->
+    <button type="button" id ="everything" class ="btn btn-primary btn-lg">
+      <% results.forEach(function(bananas) { %>
+      <%}); %>
+      Play everything
+    </button>
       <!-- here is where the view is getting info from DB -->
       <% results.forEach(function(bananas) {
         %><div id ="data">
@@ -62,12 +69,7 @@
       <%}); %>
 
 
-      <!-- Button that will play everything -->
-      <button type="button" id ="everything" class ="btn btn-primary btn-lg">
-        <% results.forEach(function(bananas) { %>
-        <%}); %>
-        Play everything
-      </button>
+
 
 
 

@@ -1,4 +1,10 @@
 var express = require('express');
+// var path = require('path');
+// var favicon = require('serve-favicon');
+// var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 mongoose.connect('mongodb://localhost/usersdb');
@@ -29,6 +35,8 @@ app.use('/audioClips', audioClipsRouter);
 // songersation router
 var songersationsRouter = require('./routes/songersations');
 app.use('/songersations', songersationsRouter);
+var apiDataRouter = require('./routes/apiData');
+app.use('/apiData', apiDataRouter);
 
 // set the view engine to use ejs files
 app.set('view engine', 'ejs');

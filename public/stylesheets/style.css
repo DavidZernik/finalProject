@@ -56,6 +56,26 @@ button, input, select, textarea {
     /* color: red; */
     background-color: #337ab7;
 }
+#addAnother {
+  color: brown;
+  background-color: grey;
+  display: table;
+  margin: 0 auto
+
+}
+
+#everything {
+  display: table;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+#sp{
+  display: table;
+  margin: 0 auto
+}
+
+
 
 /* pseudo selectors for alternating display of buttons, to make it look like a conversation */
 
