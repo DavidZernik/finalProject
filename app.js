@@ -35,6 +35,7 @@ app.set('view engine', 'ejs');
 // set the homepage to index.ejs
 app.get('/',function(request,response){
   response.render('index');
+
   // response.json(audioClips);
 });
 
