@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var uriUtil = require('mongodb-uri');
 var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
                 replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };
-var mongodbUri = 'mongodb://heroku_4kx3zn0z:r6stgag0as6o9smig551un0vft@ds051843.mongolab.com:51843/heroku_4kx3zn0z';
+var mongodbUri = 'mongodb://heroku_xdqwhpb1:tbgd57fn53ce60prh1n6q3fbij@ds051843.mongolab.com:51843/heroku_xdqwhpb1';
 var mongooseUri = uriUtil.formatMongoose(mongodbUri);
 mongoose.connect(mongooseUri, options);
 var db = mongoose.connection;
