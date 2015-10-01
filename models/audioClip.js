@@ -8,6 +8,11 @@ mongoose.connect(mongooseUri, options);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
+var AudioClipSchema = mongoose.Schema({
+// an array of the 4 sounds in the clip
+audioClip:{type: Array},
+});
+
 db.once('open', function callback () {
   var AudioClipSchema = mongoose.Schema({
   // an array of the 4 sounds in the clip
