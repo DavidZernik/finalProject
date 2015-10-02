@@ -7,7 +7,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-mongoose.connect('mongodb://localhost/usersdb');
+mongoose.connect('mongodb://heroku_xdqwhpb1:tbgd57fn53ce60prh1n6q3fbij@ds051843.mongolab.com:51843/heroku_xdqwhpb1');
 var db = mongoose.connection;
 // Need this for websocket
 var app = express();
