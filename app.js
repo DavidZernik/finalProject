@@ -7,7 +7,16 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-mongoose.connect('mongodb://localhost/usersdb');
+
+// Create a variable that checks to see if you're connect to
+// MongoLabs, otherwise save to the local database
+var mongoUri = process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL ||
+  'mongodb://localhost/usersdb';
+
+console.log("connecting to mongoUri--> " + mongoUri);
+// now use the mongoUri variable to connect
+mongoose.connect(mongoUri);
 var db = mongoose.connection;
 // Need this for websocket
 var app = express();
