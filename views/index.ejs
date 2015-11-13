@@ -7,8 +7,6 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
     <!-- remember to put script at the top of the page -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- for websockets -->
-    <script src="/socket.io/socket.io.js"></script>
     <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
   </head>
   <body>
@@ -74,8 +72,6 @@
     </section>
     <!-- script -->
     <script>
-    // for websocket
-    var socket = io();
     var numberClicks = 0;
     var clickArray=[];
     // set up web audio API============================================================

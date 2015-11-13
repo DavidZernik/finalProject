@@ -21,8 +21,7 @@ var db = mongoose.connection;
 // Need this for websocket
 var app = express();
 var server  = require('http').createServer(app);
-// Need this for websocket
-var io = require('socket.io')(server);
+
 // =========================
 // DB stuff
 db.on("error", function(err){
@@ -67,16 +66,6 @@ app.get('/',function(request,response){
 // we will put css files in the public folder
 app.use(express.static('public'));
 // =============================
-// for websocket
-// makes the localhost:3000/ set to index.ejs
-
-// for websocket
-io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
-});
 server.listen(3000, function(){
   console.log('listening on *:3000');
 });
