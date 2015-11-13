@@ -74,7 +74,14 @@ button, input, select, textarea {
   display: table;
   margin: 0 auto
 }
-
+#commentBox {
+  /*the zero refers to the top and bottom, and auto refers to the sides*/
+  margin: 0 auto;
+  width: 50%;
+  background: rgba(0,0,0,.5);
+  /*top and bottom first, then left and right*/
+  padding: 40px 100px;
+}
 
 
 /* pseudo selectors for alternating display of buttons, to make it look like a conversation */

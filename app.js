@@ -25,6 +25,7 @@ db.once('connected',function(callback){
 });
 //parse incoming json
 app.use(bodyParser.json());
+app.use(bodyParser());
 //bring in author routes
 // users router
 var usersRouter = require('./routes/users');
@@ -37,6 +38,10 @@ var songersationsRouter = require('./routes/songersations');
 app.use('/songersations', songersationsRouter);
 var apiDataRouter = require('./routes/apiData');
 app.use('/apiData', apiDataRouter);
+
+// comment router
+var commentsRouter = require('./routes/comments');
+app.use('/comments', commentsRouter);
 
 // set the view engine to use ejs files
 app.set('view engine', 'ejs');
