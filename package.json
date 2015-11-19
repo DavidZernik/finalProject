@@ -6,6 +6,9 @@
   "engines": {
   "node": "4.1.1"
   },
+  "scripts": {
+  "start": "node ./bin/www"
+  },
   "author": "David Zernik",
   "license": "ISC",
   "dependencies": {
